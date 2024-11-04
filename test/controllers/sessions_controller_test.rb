@@ -22,7 +22,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     # First login
     user = users(:one)
     login_as(user)
-    
+
     # Then logout
     delete logout_path
     assert_redirected_to root_path

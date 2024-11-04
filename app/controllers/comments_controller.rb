@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
         @post = Post.find(params[:post_id])
         @comment = @post.comments.build(comment_params)
         @comment.user = current_user
-        
+
         if @comment.save
           redirect_to post_path(@post, anchor: "comment-#{@comment.id}")
         else
@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
         @comment.destroy
         redirect_to post_path(@post), status: :see_other
     end
-    
+
     private
         def comment_params
           params.require(:comment).permit(:body, :status)
