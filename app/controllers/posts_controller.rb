@@ -1,10 +1,9 @@
 class PostsController < ApplicationController
-  http_basic_authenticate_with name: "123", password: "456", except: [ :index, :show ]
   def index
     @posts = Post.includes(:user, :comments)
                  .order(created_at: :desc)
 
-    if params[:username].present?
+    if logged_in? && params[:username].present?
       @posts = @posts.joins(:user)
                      .where("LOWER(users.username) LIKE ?", "%#{params[:username].downcase}%")
     end
