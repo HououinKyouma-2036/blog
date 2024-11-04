@@ -6,6 +6,11 @@
       <div class="form-group">
         <%= form.label :username %>
         <%= form.text_field :username, placeholder: "Enter your username" %>
+        <% if @user&.errors&.any? %>
+          <div class="error">
+            <%= @user.errors[:username].join(", ") %>
+          </div>
+        <% end %>
       </div>
 
       <div class="form-group">

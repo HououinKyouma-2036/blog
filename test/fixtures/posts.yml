@@ -1,9 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  body: MyText
+  title: First Post
+  body: This is a test post body that meets the minimum length requirement
+  user: one
+  status: public
 
 two:
-  title: MyString
-  body: MyText
+  title: Second Post
+  body: This is another test post body that meets the minimum length requirement
+  user: two
+  status: public

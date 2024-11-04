@@ -4,8 +4,12 @@ one:
   commenter: MyString
   body: MyText
   post: one
+  user: one
+  status: public
 
 two:
   commenter: MyString
   body: MyText
   post: two
+  user: two
+  status: public

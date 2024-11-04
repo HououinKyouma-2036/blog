@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-    http_basic_authenticate_with name: "123", password: "456", only: :destroy
+    before_action :require_login
+
     def create
         @post = Post.find(params[:post_id])
         @comment = @post.comments.build(comment_params)
@@ -8,7 +9,7 @@ class CommentsController < ApplicationController
         if @comment.save
           redirect_to post_path(@post, anchor: "comment-#{@comment.id}")
         else
-          redirect_to post_path(@post), alert: 'Comment could not be created'
+          redirect_to post_path(@post), alert: "Comment could not be created: #{@comment.errors.full_messages.join(', ')}"
         end
     end
 

@@ -1,13 +1,17 @@
-<%= form_with model: [ post, post.comments.build ] do |form| %>
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.label :status %><br>
-    <%= form.select :status, Visible::VALID_STATUSES, selected: 'public' %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
+<% if logged_in? %>
+  <%= form_with model: [ post, post.comments.build ] do |form| %>
+    <p>
+      <%= form.label :body %><br>
+      <%= form.text_area :body %>
+    </p>
+    <p>
+      <%= form.label :status %><br>
+      <%= form.select :status, Visible::VALID_STATUSES, selected: 'public' %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+<% else %>
+  <p>Please <% link_to "log in", login_path %> to leave a comment.</p>
 <% end %>
